@@ -1,4 +1,4 @@
-package com.fm;
+package com.perafo.fmapp;
 
 import com.facebook.react.ReactActivity;
 

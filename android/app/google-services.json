@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "741021114296",
+    "project_id": "perafo-fm",
+    "storage_bucket": "perafo-fm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741021114296:android:b43846a50c7e9e1ccff94d",
+        "android_client_info": {
+          "package_name": "com.perafo.fmapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "741021114296-qh8pi6gdtfjucuprrpfib5slud3e77f1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqS_ROm3nV0h1alIFdHKkFz9P-_AMxzvo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "741021114296-qh8pi6gdtfjucuprrpfib5slud3e77f1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "741021114296-m4b7t42asjl6crleeeng544orl4me574.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.perafo.fmapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
