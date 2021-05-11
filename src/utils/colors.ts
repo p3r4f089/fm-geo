@@ -1,1 +1,5 @@
 export const WHITE = '#FFFFFF'
+export const OPACITY = 'rgba(164, 164, 164, 0.4)'
+export const OPACITY_0 = 'rgba(0, 0, 0, 0.1)'
+export const GRAY = '#646464'
+export const GRAY_0 = '#ededed'
