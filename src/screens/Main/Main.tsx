@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './styles'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { View, Text } from 'react-native'
+import { SafeAreaView, View, Text } from 'react-native'
 
 import ListCard from 'components/ListCard/ListCard'
 import SearchBar from 'components/SearchBar/SearchBar'
@@ -11,7 +11,6 @@ import { getTopArtists, getTopTracks } from 'services/api'
 import { RootState } from 'store'
 import { setArtists, setTracks } from 'store/modules/app'
 
-import { IArtists, ITrack } from 'types'
 import { validateArray } from 'utils/utils/validateArray'
 
 const MainScreen = () => {
@@ -19,18 +18,25 @@ const MainScreen = () => {
   const dispatch = useDispatch()
 
   const artists = useSelector((state: RootState) => state.app.artists)
-  const tracks = useSelector((state: RootState) => state.app.tracks)  
+  const tracks = useSelector((state: RootState) => state.app.tracks)
+  
+  const [items, setItems] = useState([])
 
   useEffect(() => {
     setDataTracks()
     setDataArtists()
   }, [])
 
-  // useEffect(() => {
-  //   console.log(tracks)
-  //   console.log(artists)
+  useEffect(() => {    
 
-  // }, [artists, tracks])
+    if(validateArray(tracks) && validateArray(artists)){      
+      setItems([])
+      let io: any[] = []
+      const aux = io.concat(tracks).concat(artists)      
+      setItems(aux)
+    }
+
+  }, [artists, tracks])
 
   const setDataTracks = async () => {
     try{
@@ -55,32 +61,23 @@ const MainScreen = () => {
     }
   }
 
-  const buildTop = (data: Array<IArtists | ITrack>) => {
-    if(validateArray(data)){      
-      return <ListCard items={data}/>
-    }
-    return null
-  }
-
   return(
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.content}>
 
         <SearchBar 
-          items={[]}
+          items={items}
           searchParams={['name']}    
           placeholder={`Buscar Top`}        
-          onResult={(result, searchMode) => {console.log(result) }}
+          onResult={(result, searchMode) => {console.log('result ' + JSON.stringify(result) ) }}
         />
 
         <Text style={styles.title}>Top Artists</Text>      
         <ListCard items={artists}/>
-        {/* {buildTop(artists)} */}
         <Text style={styles.title}>Top Tracks</Text>
-        <ListCard items={tracks}/>
-        {/* {buildTop(tracks)} */}
+        <ListCard items={tracks}/>        
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
 

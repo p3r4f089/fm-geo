@@ -5,14 +5,12 @@ import { WHITE, GRAY_0, OPACITY_0 } from 'utils/colors'
 
 const styles = StyleSheet.create({
   container:{
-    flex: 1,
-    height: 100,
-    marginVertical: normalize(10),    
-    backgroundColor: 'red'
+    marginBottom: normalize(20)    
   },
   card:{
-    width: 100,
-    padding: normalize(10),
+    width: normalize(100),
+    height: normalize(150),    
+    marginRight: normalize(10),
     backgroundColor: WHITE,    
     borderColor: GRAY_0,
     borderWidth: 1,    
@@ -27,7 +25,13 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   name:{
-    fontSize: normalize(18)
+    fontSize: normalize(18),
+    textAlign: 'center'    
+  },
+  cardImage:{
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center'
   }
 })
 

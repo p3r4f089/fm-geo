@@ -1,26 +1,42 @@
 import React from 'react'
 import styles from './styles'
 
-import { FlatList, View, Text, Image } from 'react-native'
+import { View, VirtualizedList, Text, ImageBackground } from 'react-native'
 
-import { IListCard, IArtists, ITrack } from 'types'
+import { IListCard } from 'types'
 
-const ListCard = (props: IListCard) => {
-  
+const ListCard = (props: IListCard) => {  
 
-  const renderItem = (item: any) => (
-    <View style={styles.card}>
-      <Text style={styles.name}>{item.name}</Text>
-    </View>
-  )
+  const getItem = (data: Array<any>, index: number) => {
+    return data[index]        
+  }
+
+  const getItemCount = (data: Array<any>) => {
+    if(Array.isArray(data)){
+      return data.length
+    }
+    return 0
+  } 
 
   return(
     <View style={styles.container}>
-      <FlatList
-        data={props.items}        
-        renderItem={({ item }) =>  {return renderItem(item)} }
-        keyExtractor={item => item.name}
+      <VirtualizedList
         horizontal
+        showsHorizontalScrollIndicator
+        data={props.items}
+        initialNumToRender={4}
+        renderItem={({ item, index }) => (
+          <View key={index} style={styles.card}>
+            <ImageBackground source={{uri: item.image[2]['#text']}} style={styles.cardImage}>
+              <Text style={styles.name}>{item.name}</Text>
+            </ImageBackground>
+          </View>
+        )
+          
+        }
+        keyExtractor={item => item.name.toString()}        
+        getItemCount={getItemCount}
+        getItem={getItem}        
       />
     </View>
   )
